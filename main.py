@@ -90,3 +90,6 @@ async def upload_file(file: UploadFile = File(...), sample_size: int = Form(1000
     except Exception as e:
         logger.error(f"Pipeline error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Use PORT from env, default to 8000
+    uvicorn.run(app, host="0.0.0.0", port=port)
